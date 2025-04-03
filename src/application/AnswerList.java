@@ -16,6 +16,7 @@ import javafx.stage.Stage;
 public class AnswerList {
 	public ScrollPane display(Label q, Student topic, Answers ans, Label error) {
 		
+		
 		HBox layout = new HBox(2);
 		
 		VBox leftLayout = new VBox(3);
@@ -26,13 +27,16 @@ public class AnswerList {
 		Button preferAnswer=  new Button("Prefer Answer");
 		Button deleteAnswer = new Button ("Delete Answer");
 		Button editAnswer = new Button("Edit Answer");
+		Button makeReview = new Button("Review an Answer");
 		HBox editAndDelete = new HBox(4);
 		VBox answerButtons = new VBox(4);
 		editAndDelete.getChildren().addAll(deleteAnswer, editAnswer);
 		answerAndPrefer.getChildren().addAll(answerButton, preferAnswer);
-		answerButtons.getChildren().addAll(answerAndPrefer, editAndDelete);
+		answerButtons.getChildren().addAll(answerAndPrefer, editAndDelete, makeReview);
 		VBox answerBox = new VBox();
 		
+		ans.StoreAnswer("This is a test answer", "Lynn Robert Carter", topic.getId());
+		answerList.getItems().add("This is a test answer");
 		
 		answerButtons.setMinHeight(60);
 		
@@ -101,6 +105,11 @@ public class AnswerList {
 		editAnswer.setOnAction(e -> {
 			AnswerEditor.show(new Stage(),ans,answerList, answerB, error);
 			
+		});
+		
+		makeReview.setOnAction(e -> {
+			error.setText(null);
+			ReviewerController.show(new Stage(), answerList, error, "ans");
 		});
 		
 		return answers;

@@ -1,4 +1,5 @@
 package application;
+import java.io.IOException;
 import java.util.HashMap;
 
 import javafx.geometry.Pos;
@@ -14,23 +15,19 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class DiscussionWindow {
+public class ReviewerWindow {
 	public void show(Stage primaryStage) {
-    	primaryStage.setTitle("Discussion Window");
+    	primaryStage.setTitle("Reviewer Window");
     	
     	Students students = new Students();
     	
     	ListView<String> QuestionList = new ListView<>();
     	QuestionList.setEditable(true);
     	
-    	Button askQuestion = new Button("Ask a question");
-		Button editQuestion = new Button("Edit Question");
-		Button deleteQuestion = new Button("Delete Question");
+    	Button reviewQuestion = new Button("Review a Question");
+		Button ScanReviews = new Button("Look at your reviews");
 		
-		TextField quesSearch = new TextField();
-		Button searchButton = new Button("Search");
-		
-		quesSearch.setMaxWidth(200);
+		Label q = new Label();
 		
 		Label localQ = new Label();
 		
@@ -39,15 +36,23 @@ public class DiscussionWindow {
 		VBox qViewer = new VBox();
 		
     	
-		HBox buttonBox = new HBox(4, error, askQuestion, editQuestion, deleteQuestion, quesSearch, searchButton);
+		HBox buttonBox = new HBox(4, error, reviewQuestion, ScanReviews);
 		
 		students.StoreStudents("Test", "This is a test", "Lynn Robert Carter", 1);
 		QuestionList.getItems().add("Test");
 		
 		// when ask question button is pressed, show new question window
-		askQuestion.setOnAction(e -> {
+		reviewQuestion.setOnAction(e -> {
 			error.setText(null);
-			QuestionController.show(new Stage(), QuestionList, students, error);
+			ReviewerController.show(new Stage(), QuestionList, error, "ques");
+		});
+		
+		ScanReviews.setOnAction(e -> {
+			try {
+				ReviewerList.show(new Stage(), "Mooey001");
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
 		});
 		
 		HashMap<Student,ScrollPane> answerWindows = new HashMap<>();
@@ -69,23 +74,7 @@ public class DiscussionWindow {
 			}
 			});
 		
-		// When delete question is clicked, remove the question form the question list and remove it from array list
-		deleteQuestion.setOnAction(e -> {
-			students.RemoveStudentQuesByTitle(QuestionList.getSelectionModel().getSelectedItem(), QuestionList, qViewer, "Mooey001", error);
-		});
 		
-		// When search button is clicked, sort question list to show only specific questions
-		searchButton.setOnMouseClicked(e -> {
-			error.setText(null);
-			students.SortQuestionList(quesSearch.getText(), QuestionList);
-			quesSearch.clear();
-		});
-		
-		// when edit question is clicked, show edit question window
-		editQuestion.setOnMouseClicked(e -> {
-			error.setText(null);
-			EditController.show(new Stage(), QuestionList, students, error);
-		});
 		
 		buttonBox.setStyle("-fx-alignment: center; -fx-padding: 20;");
 	
