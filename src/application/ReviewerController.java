@@ -12,7 +12,9 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.*;
-
+/**
+ * JavaFX scene that handles submitting reviews of questions and answers
+ */
 public class ReviewerController {
 	
 	
@@ -32,7 +34,7 @@ public class ReviewerController {
 		
 		StackPane layout = new StackPane();
 		
-		// When submit question is clicked, add question to both question list and array list
+		// Submits review when clicked
 		submitReview.setOnAction(new EventHandler<ActionEvent>() {
 			
 			@Override
@@ -43,7 +45,7 @@ public class ReviewerController {
 				else {
 					try {
 						BufferedWriter writer = new BufferedWriter(new FileWriter("reviews.csv", true));
-						writer.write("Mooey001," + quesInputTitle.getText() + "," + List.getSelectionModel().getSelectedItem() + "," + type + "\n");
+						writer.write("Mooey001,Zalmindo1," + quesInputTitle.getText() + "," + List.getSelectionModel().getSelectedItem() + "," + type + "\n");
 						writer.close();
 						superStage.close();
 					} catch (IOException e) {
@@ -53,8 +55,7 @@ public class ReviewerController {
 				}
 			}
 		});
-		
-		
+			
 		// Close window
 		cancel.setOnAction(e -> {
 			error.setText(null);
@@ -72,4 +73,17 @@ public class ReviewerController {
 		superStage.setScene(scene);
 		superStage.show();
 	}
+	
+
+	    public static List<String> loadAllReviews() {
+	        List<String> reviews = new ArrayList<>();
+	        try (Scanner scanner = new Scanner(new java.io.File("reviews.csv"))) {
+	            while (scanner.hasNextLine()) {
+	                reviews.add(scanner.nextLine());
+	            }
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	        }
+	        return reviews;
+	    }
 }

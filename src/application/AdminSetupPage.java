@@ -20,7 +20,10 @@ public class AdminSetupPage {
     public AdminSetupPage(DatabaseHelper databaseHelper) {
         this.databaseHelper = databaseHelper;
     }
-
+    /**
+     * The UI show method to display admin setup page to user
+     * @param primaryStage
+     */
     public void show(Stage primaryStage) {
     	// Input fields for userName and password
         TextField userNameField = new TextField();
@@ -61,7 +64,7 @@ public class AdminSetupPage {
                     System.out.println("Administrator setup completed.");
                     
                     // Navigate to the Welcome Login Page
-                    new WelcomeLoginPage(databaseHelper).show(primaryStage,user,false);
+                    new WelcomeLoginPage(databaseHelper).show(primaryStage,user,false,false);
     			}
             } catch (SQLException e) {
                 System.err.println("Database error: " + e.getMessage());

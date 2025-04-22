@@ -74,7 +74,7 @@ public class SetupAccountPage {
     		                databaseHelper.register(user);
     		                
     		             // Navigate to the Welcome Login Page
-    		                new WelcomeLoginPage(databaseHelper).show(primaryStage,user,false);
+    		                new WelcomeLoginPage(databaseHelper).show(primaryStage,user,false,false);
             			}
             		}
             		else {

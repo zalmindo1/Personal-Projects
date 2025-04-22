@@ -8,7 +8,9 @@ import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import java.util.*;
-
+/**
+ * JavaFX scene that handles editing student questions
+ */
 public class EditController {
 	public static ListView<String> show(Stage superStage, ListView<String> qList, Students stu, Label error) {
 		superStage.setTitle("Edit Question");

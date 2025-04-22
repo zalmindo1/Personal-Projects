@@ -4,7 +4,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-
+/**
+ * JavaFX scene that handles editing user answers
+ */
 public class AnswerEditor {
 
 	public static void show(Stage s, Answers answers, ListView<String> answerList, VBox answerB, Label error) {

@@ -9,7 +9,9 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-
+/**
+ * JavaFX scene that handles sumbmitting new answers into the discussion board
+ */
 public class AnswerController {
 	public static ListView<String> show(Stage superStage, ListView<String> qList, Answers answers, Student topic, Label error) {
 		

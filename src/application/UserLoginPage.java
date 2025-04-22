@@ -5,7 +5,10 @@ import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.sql.SQLException;
+import java.util.Scanner;
 
 import databasePart1.*;
 
@@ -34,6 +37,9 @@ public class UserLoginPage {
         CheckBox reviewerBox = new CheckBox();
         reviewerBox.setText("Reviewer");
         
+        CheckBox staffBox = new CheckBox();
+        staffBox.setText("Staff");
+        
         // Label to display error messages
         Label errorLabel = new Label();
         errorLabel.setStyle("-fx-text-fill: red; -fx-font-size: 12px;");
@@ -55,7 +61,26 @@ public class UserLoginPage {
             	if(role!=null) {
             		user.setRole(role);
             		if(databaseHelper.login(user)) {
-            			welcomeLoginPage.show(primaryStage,user,reviewerBox.isSelected());
+            			ValidRoleCheck validr = new ValidRoleCheck();
+            			if (reviewerBox.isSelected()) {
+            				if (validr.CheckValidReviewer(userName)) {
+            					welcomeLoginPage.show(primaryStage, user, true, false);
+            				}
+            				else {
+            					errorLabel.setText("Error: you are not a reviewer");
+            				}
+            			}
+            			else if (staffBox.isSelected()) {
+            				if (validr.CheckValidStaff(userName)) {
+            					welcomeLoginPage.show(primaryStage, user, false, true);
+            				}
+            				else {
+            					errorLabel.setText("Error: you are not a staff member");
+            				}
+            			}
+            			else {
+            				welcomeLoginPage.show(primaryStage, user, false, false);
+            			}
             		}
             		else {
             			// Display an error if the login fails
@@ -75,7 +100,7 @@ public class UserLoginPage {
 
         VBox layout = new VBox(10);
         layout.setStyle("-fx-padding: 20; -fx-alignment: center;");
-        layout.getChildren().addAll(userNameField, passwordField, reviewerBox, loginButton, errorLabel);
+        layout.getChildren().addAll(userNameField, passwordField, reviewerBox, staffBox, loginButton, errorLabel);
 
         primaryStage.setScene(new Scene(layout, 800, 400));
         primaryStage.setTitle("User Login");

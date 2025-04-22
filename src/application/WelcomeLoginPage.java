@@ -5,6 +5,9 @@ import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.application.Platform;
+
+import java.io.IOException;
+
 import databasePart1.*;
 
 /**
@@ -18,7 +21,7 @@ public class WelcomeLoginPage {
     public WelcomeLoginPage(DatabaseHelper databaseHelper) {
         this.databaseHelper = databaseHelper;
     }
-    public void show( Stage primaryStage, User user, boolean review) {
+    public void show( Stage primaryStage, User user, boolean review, boolean staff) {
     	
     	VBox layout = new VBox(5);
 	    layout.setStyle("-fx-alignment: center; -fx-padding: 20;");
@@ -33,10 +36,13 @@ public class WelcomeLoginPage {
 	    	System.out.println(role);
 	    	
 	    	if(role.equals("admin")) {
-	    		new AdminHomePage().show(primaryStage);
+	    		new AdminWindow().show(primaryStage);
 	    	}
 	    	else if(role.equals("user") && (review)) {
 	    		new ReviewerWindow().show(primaryStage);
+	    	}
+	    	else if (role.equals("user") && (staff)) {
+	    		new StaffWindow().show(primaryStage);
 	    	}
 	    	else if (role.equals("user")){
 	    		new DiscussionWindow().show(primaryStage);

@@ -14,18 +14,29 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.*;
-
+/**
+ * <p> Title: Staff Window <p>
+ * 
+ * <p> Description: This is a JavaFX scene that contains all reviews inside of reviews.csv as well the buttons to edit and delete reviews
+   
+   <p> Copyright: Zachary Almindo © 2025<p>
+   
+   @author Zachary Almindo
+   @version 1.0
+ */
 public class ReviewerList {
+	/**
+	 * Displaying the JavaFX scene
+	 * @param superStage
+	 * @param user
+	 * @throws IOException
+	 */
 	public static void show(Stage superStage, String user) throws IOException {
 		superStage.setTitle("Review List");
 		
 		File file = new File("reviews.csv");
 		
-		Scanner scn = new Scanner(file);
-		
 		ListView<String> reviews = new ListView<>();
-		Button edit = new Button("Edit a Review");
-		Button delete = new Button("Delete a Review");
 		Button close = new Button ("Close");
 		VBox rViewer = new VBox();
 		Label r = new Label();
@@ -34,26 +45,23 @@ public class ReviewerList {
 			superStage.close();
 		});
 		
-		while (scn.hasNextLine()) {
-			String[] revs = scn.nextLine().split(",");
-			if (revs[0].equals(user)) {
-				reviews.getItems().add(revs[1]);
-			}
-		}
+		Reviewers rev = new Reviewers();
 		
+		rev.ShowReviewsStaff(reviews);
 		
+		// Shows the reviewer's reviews
 		reviews.setOnMouseClicked(e -> {
 			try {
 				Scanner scn1 = new Scanner(file);
 				rViewer.getChildren().clear();
 				while (scn1.hasNextLine()) {
 					String[] revs = scn1.nextLine().split(",");
-					if (revs[1].equals(reviews.getSelectionModel().getSelectedItem()) && revs[3].equals("ques")) {
-						r.setText(revs[0] + " Reviewed question " + revs[2] + "\n" + revs[1]);
+					if (revs[2].equals(reviews.getSelectionModel().getSelectedItem()) && revs[4].equals("ques")) {
+						r.setText(revs[0] + " Reviewed question " + revs[3] + "\n" + revs[2]);
 						rViewer.getChildren().add(r);
 					}
-					else if (revs[1].equals(reviews.getSelectionModel().getSelectedItem()) && revs[3].equals("ans")) {
-						r.setText(revs[0] + " Reviewed answer to question " + revs[2] + "\n" + revs[1]);
+					else if (revs[2].equals(reviews.getSelectionModel().getSelectedItem()) && revs[4].equals("ans")) {
+						r.setText(revs[0] + " Reviewed answer to question " + revs[3] + "\n" + revs[2]);
 						rViewer.getChildren().add(r);
 				}
 			  }
@@ -64,49 +72,9 @@ public class ReviewerList {
 			
 		});
 		
-		edit.setOnAction(e -> {
-			try {
-				EditReview.show(new Stage(), reviews);
-			} catch (FileNotFoundException e1) {
-				e1.printStackTrace();
-			}
-		});
-		
-		delete.setOnAction(e -> {
-			try {
-				Scanner sc1 = new Scanner(new File("reviews.csv"));
-				
-				BufferedWriter writer1 = new BufferedWriter(new FileWriter("temp.csv"));
-				
-				while (sc1.hasNextLine()) {
-					String[] revs = sc1.nextLine().split(",");
-					if (revs[1].equals(reviews.getSelectionModel().getSelectedItem())) {
-						continue;
-					}
-					else {
-						writer1.write(revs[0] + "," + revs[1] + "," + revs[2] + "," + revs[3] + "\n");
-					}
-				}
-				writer1.close();
-				sc1.close();
-				
-				Scanner sc2 = new Scanner(new File("temp.csv"));
-				
-				BufferedWriter writer2 = new BufferedWriter(new FileWriter("reviews.csv"));
-				
-				while (sc2.hasNextLine()) {
-					String[] revs = sc2.nextLine().split(",");
-					writer2.write(revs[0] + "," + revs[1] + "," + revs[2] + "," + revs[3] + "\n");
-				}
-				writer2.close();
-				sc2.close();
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			}
-		});
 		
 		
-		HBox buttonBox = new HBox(4, edit, delete, close);
+		HBox buttonBox = new HBox(4, close);
 		
 		BorderPane bdrLayout = new BorderPane();
 		bdrLayout.setCenter(rViewer);

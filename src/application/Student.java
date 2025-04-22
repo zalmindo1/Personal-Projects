@@ -1,4 +1,7 @@
 package application;
+/**
+ * Class that contains information about student question
+ */
 public class Student {
 	
 	private int Id;

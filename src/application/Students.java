@@ -9,7 +9,16 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-
+/**
+ * <p> Title: Questions Handler <p>
+ * 
+ * <p> Description: This java class handles actions regarding student questions
+   
+   <p> Copyright: Zachary Almindo © 2025<p>
+   
+   @author Zachary Almindo
+   @version 1.0
+ */
 public class Students {
 	// Sets up array list to store questions
 	ArrayList<Student> stuList = new ArrayList<Student>();
@@ -183,6 +192,14 @@ public class Students {
 			}
 			qList.getItems().add(stu.getQuesTitle());
 		}
+	}
+	
+	public String StudentNameByTitle(String title) {
+		String name = "";
+		for (Student stu : stuList) {
+			System.out.println(stu.getQuesTitle());
+		}
+		return name;
 	}
 	
 }

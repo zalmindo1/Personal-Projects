@@ -14,8 +14,11 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.*;
-
+/**
+ * JavaFX scene that handles editing reviews
+ */
 public class EditReview {
+	
 	public static void show(Stage superStage, ListView<String> rList) throws FileNotFoundException {
 		superStage.setTitle("Edit Review");
 		
@@ -32,16 +35,17 @@ public class EditReview {
 		File file = new File("reviews.csv");
 		Scanner scn = new Scanner(file);
 		
+		// Edit review when button is clicked
 		submitReview.setOnAction(e -> {
 			try {
 				BufferedWriter writer = new BufferedWriter(new FileWriter("temp.csv"));
 				while (scn.hasNextLine()) {
 					String[] revs = scn.nextLine().split(",");
-					if (revs[1].equals(rList.getSelectionModel().getSelectedItem())) {
-						writer.write(revs[0] + "," + NewReview.getText() + "," + revs[2] + "," + revs[3] + "\n");
+					if (revs[2].equals(rList.getSelectionModel().getSelectedItem())) {
+						writer.write(revs[0] + "," + revs[1] + "," + NewReview.getText() + "," + revs[3] + "," + revs[4] + "\n");
 					}
 					else {
-						writer.write(revs[0] + "," + revs[1] + "," + revs[2] + "," + revs[3] + "\n");
+						writer.write(revs[0] + "," + revs[1] + "," + revs[2] + "," + revs[3] + "," + revs[4] + "\n");
 					}
 				}
 				writer.close();
@@ -54,7 +58,7 @@ public class EditReview {
 				
 				while(scn1.hasNextLine()) {
 					String[] revs1 = scn1.nextLine().split(",");
-					writerNew.write(revs1[0] + "," + revs1[1] + "," + revs1[2] + "," + revs1[3] + "\n");
+					writerNew.write(revs1[0] + "," + revs1[1] + "," + revs1[2] + "," + revs1[3] + "," + revs1[4] + "\n");
 				}
 				writerNew.close();
 				scn1.close();

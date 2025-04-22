@@ -1,4 +1,5 @@
 package application;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.HashMap;
 
@@ -14,7 +15,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-
+/**
+ * JavaFX scene that handles showing the windows for reviewing a question, looking at reviews you've wrote, writing private messages, and viewing your private messages
+ */
 public class ReviewerWindow {
 	public void show(Stage primaryStage) {
     	primaryStage.setTitle("Reviewer Window");
@@ -26,6 +29,8 @@ public class ReviewerWindow {
     	
     	Button reviewQuestion = new Button("Review a Question");
 		Button ScanReviews = new Button("Look at your reviews");
+		Button Pm = new Button("Private Messages");
+		Button viewPM = new Button("View PMS");
 		
 		Label q = new Label();
 		
@@ -36,17 +41,20 @@ public class ReviewerWindow {
 		VBox qViewer = new VBox();
 		
     	
-		HBox buttonBox = new HBox(4, error, reviewQuestion, ScanReviews);
+		HBox buttonBox = new HBox(4, error, reviewQuestion, ScanReviews, Pm, viewPM);
 		
 		students.StoreStudents("Test", "This is a test", "Lynn Robert Carter", 1);
 		QuestionList.getItems().add("Test");
+		students.StoreStudents("Hello", "I need some help with TP3", "Zalmindo1", 2);
+		QuestionList.getItems().add("Hello");
 		
-		// when ask question button is pressed, show new question window
+		// Opens up JavaFX screen that handles submitting reviews
 		reviewQuestion.setOnAction(e -> {
 			error.setText(null);
 			ReviewerController.show(new Stage(), QuestionList, error, "ques");
 		});
 		
+		// Opens JavaFX screen the handles viewing user reviews
 		ScanReviews.setOnAction(e -> {
 			try {
 				ReviewerList.show(new Stage(), "Mooey001");
@@ -74,7 +82,25 @@ public class ReviewerWindow {
 			}
 			});
 		
+		//Opens us java fx screen that handles sending private messages
+		Pm.setOnMouseClicked(e -> {
+			error.setText(null);
+			try {
+				PmManager.show(new Stage(), "Mooey001");
+			} catch (FileNotFoundException e1) {
+				e1.printStackTrace();
+			}
+		});
 		
+		//Opens up java fx screen the handles sending private messages
+		viewPM.setOnMouseClicked(e -> {
+			error.setText(null);
+			try {
+				PmList.show(new Stage(), "Mooey001");
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+		});
 		
 		buttonBox.setStyle("-fx-alignment: center; -fx-padding: 20;");
 	

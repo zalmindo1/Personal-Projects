@@ -1,5 +1,8 @@
 package application;
 import java.util.*;
+/**
+ * Class that stores and performs CRUD operations on Answer objects
+ */
 public class Answers{
 	// Creates an array list for storing answers
 	LinkedList<Answer> ansList = new LinkedList<Answer>();

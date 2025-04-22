@@ -6,7 +6,9 @@ import java.sql.SQLException;
 
 import databasePart1.DatabaseHelper;
 
-
+/**
+ * Launches the program
+ */
 public class StartCSE360 extends Application {
 
 	private static final DatabaseHelper databaseHelper = new DatabaseHelper();
@@ -15,7 +17,10 @@ public class StartCSE360 extends Application {
 	{
 		 launch(args);
 	}
-	
+	/**
+	 * Start methods that starts the program
+	 * @param primaryStage The primary stage where the scene will be displayed.
+	 */
 	@Override
     public void start(Stage primaryStage) {
         try {

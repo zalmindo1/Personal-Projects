@@ -12,7 +12,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
-
+/**
+ * JavaFX UI element that handles displaying answers to questions
+ */
 public class AnswerList {
 	public ScrollPane display(Label q, Student topic, Answers ans, Label error) {
 		
@@ -35,7 +37,7 @@ public class AnswerList {
 		answerButtons.getChildren().addAll(answerAndPrefer, editAndDelete, makeReview);
 		VBox answerBox = new VBox();
 		
-		ans.StoreAnswer("This is a test answer", "Lynn Robert Carter", topic.getId());
+		ans.StoreAnswer("This is a test answer", "Zalmindo1", topic.getId());
 		answerList.getItems().add("This is a test answer");
 		
 		answerButtons.setMinHeight(60);

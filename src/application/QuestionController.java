@@ -8,7 +8,9 @@ import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import java.util.*;
-
+/**
+ * JavaFX scene that handles submitting a question to the discussion board
+ */
 public class QuestionController {
 	
 	
