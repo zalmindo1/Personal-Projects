@@ -18,7 +18,7 @@ import javafx.stage.Stage;
 /**
  * <p> Title: Staff Window <p>
  * 
- * <p> Description: This is a JavaFX scene that contains the student questions and answers in a ListView, and the buttons for viewing private messages, sending private messages, and viewing all reviews
+ * <p> Description: This is a JavaFX scene that is displayed when anyone with the staff role logs into the system, allowing for them to perform staff functions
    
    <p> Copyright: Zachary Almindo © 2025<p>
    
@@ -31,7 +31,7 @@ public class StaffWindow {
 	 * @param primaryStage
 	 */
 	// Displays Staff Window on GUI
-	public static void show(Stage primaryStage) {
+	public void show(Stage primaryStage) {
 		// Sets title for staff window
     	primaryStage.setTitle("Staff Window");
     	
@@ -46,6 +46,8 @@ public class StaffWindow {
 		Button viewPM = new Button ("View PMS");
 		Button Pm = new Button("Private Messages");
 		Button viewReviews = new Button("View Reviews");
+    	Button viewReq = new Button ("View Requests");
+    	Button viewCloseReq = new Button("View Closed Requests");
 		
 		Label localQ = new Label();
 		
@@ -54,7 +56,7 @@ public class StaffWindow {
 		VBox qViewer = new VBox();
 		
     	
-		HBox buttonBox = new HBox(2, error, viewPM, Pm, viewReviews);
+		HBox buttonBox = new HBox(2, error, viewPM, Pm, viewReviews, viewReq, viewCloseReq);
 		
 		// Test questions
 		students.StoreStudents("Test", "This is a test", "Lynn Robert Carter", 1);
@@ -110,6 +112,18 @@ public class StaffWindow {
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}
+		});
+		
+		// When button is clicked, shows all open requests
+		viewReq.setOnAction(e -> {
+			Requests req = new Requests();
+			req.ShowRequestList();
+		});
+		
+		// When button is clicked, shows all closed requests
+		viewCloseReq.setOnAction(e -> {
+			Requests req = new Requests();
+			req.ShowClosedRequestList();
 		});
 		
 		buttonBox.setStyle("-fx-alignment: center; -fx-padding: 20;");

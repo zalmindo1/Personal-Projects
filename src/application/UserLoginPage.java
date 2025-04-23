@@ -40,6 +40,9 @@ public class UserLoginPage {
         CheckBox staffBox = new CheckBox();
         staffBox.setText("Staff");
         
+        CheckBox instBox = new CheckBox();
+        instBox.setText("Instructor");
+        
         // Label to display error messages
         Label errorLabel = new Label();
         errorLabel.setStyle("-fx-text-fill: red; -fx-font-size: 12px;");
@@ -64,7 +67,7 @@ public class UserLoginPage {
             			ValidRoleCheck validr = new ValidRoleCheck();
             			if (reviewerBox.isSelected()) {
             				if (validr.CheckValidReviewer(userName)) {
-            					welcomeLoginPage.show(primaryStage, user, true, false);
+            					welcomeLoginPage.show(primaryStage, user, true, false, false);
             				}
             				else {
             					errorLabel.setText("Error: you are not a reviewer");
@@ -72,14 +75,22 @@ public class UserLoginPage {
             			}
             			else if (staffBox.isSelected()) {
             				if (validr.CheckValidStaff(userName)) {
-            					welcomeLoginPage.show(primaryStage, user, false, true);
+            					welcomeLoginPage.show(primaryStage, user, false, true, false);
             				}
             				else {
             					errorLabel.setText("Error: you are not a staff member");
             				}
             			}
+            			else if(instBox.isSelected()) {
+            				if (validr.CheckValidInstructor(userName)) {
+            					welcomeLoginPage.show(primaryStage, user, false, false, true);
+            				}
+            				else {
+            					errorLabel.setText("Error: you are not an instructor");
+            				}
+            			}
             			else {
-            				welcomeLoginPage.show(primaryStage, user, false, false);
+            				welcomeLoginPage.show(primaryStage, user, false, false, false);
             			}
             		}
             		else {
@@ -100,7 +111,7 @@ public class UserLoginPage {
 
         VBox layout = new VBox(10);
         layout.setStyle("-fx-padding: 20; -fx-alignment: center;");
-        layout.getChildren().addAll(userNameField, passwordField, reviewerBox, staffBox, loginButton, errorLabel);
+        layout.getChildren().addAll(userNameField, passwordField, reviewerBox, staffBox, instBox, loginButton, errorLabel);
 
         primaryStage.setScene(new Scene(layout, 800, 400));
         primaryStage.setTitle("User Login");

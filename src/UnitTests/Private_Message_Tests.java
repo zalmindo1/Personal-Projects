@@ -1,4 +1,4 @@
-package UnitTests;
+package unitTests;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -42,7 +42,7 @@ public class Private_Message_Tests {
 	@Test
 	void WritePM() {
 		Pms pm = new Pms();
-		assertEquals(true, pm.WritePM("Mooey001", "Hello"));
+		assertEquals(true, pm.WritePM("Mooey001", "Hello", "Zalmindo1"));
 	}
 	
 	

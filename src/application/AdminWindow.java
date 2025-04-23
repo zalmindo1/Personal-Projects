@@ -18,10 +18,19 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 /**
- * JavaFX scene that is the discussion board, containing questions and answers, and allows for whitelisting students to become reviewers
+ * <p> Title: Staff Window <p>
+ * 
+ * <p> Description: This is a JavaFX scene that is displayed when anyone with the admin role logs into the system, allowing for them to perform admin functions
+   
+   <p> Copyright: Zachary Almindo © 2025<p>
+   
+   @author Zachary Almindo
+   @version 1.0
  */
 public class AdminWindow {
+	// Displays admin window onto GUI
 	public void show(Stage primaryStage) {
+		// Sets title for admin window
     	primaryStage.setTitle("Admin Window");
     	
     	Students students = new Students();
@@ -29,7 +38,8 @@ public class AdminWindow {
     	ListView<String> QuestionList = new ListView<>();
     	QuestionList.setEditable(true);
     	
-    	Button whitelist = new Button("Whitelist Students");
+    	Button viewReq = new Button ("View Requests");
+    	Button viewCloseReq = new Button("View Closed Requests");
 		
 		TextField quesSearch = new TextField();
 		Button searchButton = new Button("Search");
@@ -43,7 +53,7 @@ public class AdminWindow {
 		VBox qViewer = new VBox();
 		
     	
-		HBox buttonBox = new HBox(2, error, whitelist, quesSearch, searchButton);
+		HBox buttonBox = new HBox(2, error, viewReq, viewCloseReq, quesSearch, searchButton);
 		
 		students.StoreStudents("Test", "This is a test", "Lynn Robert Carter", 1);
 		QuestionList.getItems().add("Test");
@@ -70,15 +80,16 @@ public class AdminWindow {
 			}
 			});
 		
-		whitelist.setOnAction(e -> {
-			try {
-				BufferedWriter writer = new BufferedWriter(new FileWriter("reviewers.csv", true));
-				writer.write("Zalmindo1,\n");
-				writer.close();
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			}
-			
+		// When button is clicked, open admin request list
+		viewReq.setOnAction(e -> {
+			Requests req = new Requests();
+			req.ShowAdminRequestList();
+		});
+		
+		// When button is clicked, shows all closed requests
+		viewCloseReq.setOnAction(e -> {
+			Requests req = new Requests();
+			req.ShowClosedRequestList();
 		});
 		
 		buttonBox.setStyle("-fx-alignment: center; -fx-padding: 20;");

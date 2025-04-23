@@ -46,11 +46,11 @@ public class Pms {
 	 * @param body
 	 * @return true/false depending on if the method performed correctly
 	 */
-	public boolean WritePM(String user, String body) {
+	public boolean WritePM(String user, String body, String sender) {
 		boolean worked = false;
 		try {
 			BufferedWriter writer = new BufferedWriter(new FileWriter("pm.csv", true));
-			writer.write("Staff123" + "," + user + "," + body + "\n");
+			writer.write(sender + "," + user + "," + body + "\n");
 			writer.close();
 			worked = true;
 		} catch (IOException e) {

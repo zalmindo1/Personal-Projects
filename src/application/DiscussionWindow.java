@@ -102,7 +102,7 @@ public class DiscussionWindow {
 		viewPM.setOnMouseClicked(e -> {
 			error.setText(null);
 			try {
-				PmList.show(new Stage(), "Zalmindo1");
+				PmList.show(new Stage());
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}

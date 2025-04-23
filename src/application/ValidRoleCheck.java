@@ -56,4 +56,25 @@ public class ValidRoleCheck {
 		}
 		return valid;
 	}
+	/**
+	 * This method checks the instructors.csv file to see if passed in username is an instructor
+	 * @param username
+	 * @return
+	 */
+	public boolean CheckValidInstructor (String username) {
+		boolean valid = false;
+		File rfile = new File("instructors.csv");
+		try {
+			Scanner scn = new Scanner(rfile);
+			while (scn.hasNextLine()) {
+				String[] revs = scn.nextLine().split(",");
+				if (revs[0].equals(username)) {
+					valid = true;
+				}
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		return valid;
+	}
 }

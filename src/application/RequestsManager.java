@@ -17,14 +17,14 @@ import java.util.*;
 /**
  * <p> Title: Private Messages Window <p>
  * 
- * <p> Description: This is a JavaFX scene that is opened when the "pms" button is clicked. Prompts the user for a username and message body to send a private message
+ * <p> Description: This is a JavaFX scene that allows for instructors to create a admin work request ticket
    
    <p> Copyright: Zachary Almindo © 2025<p>
    
    @author Zachary Almindo
    @version 1.0
  */
-public class PmManager {
+public class RequestsManager {
 	/**
 	 * Displaying the JavaFX scene
 	 * @param superStage
@@ -33,32 +33,27 @@ public class PmManager {
 	 */
 	public static void show(Stage superStage, String user) throws FileNotFoundException {
 		// Sets title for window
-		superStage.setTitle("Private Message");
+		superStage.setTitle("Admin Request");
 		
 		// Buttons for sending a pm and canceling
-		Button submitPM = new Button("Send a PM");
+		Button submitReq = new Button("Request Admin Work");
 		Button cancel = new Button("Cancel");
 		
-		Label prompt = new Label("Enter your private message");
+		Label prompt = new Label("Enter your request");
 		
-		Label p = new Label("Enter the person you want to DM");
 		Label f = new Label("Enter your message body");
 		
-		// Text boxes to get user input for username and body of pm
-		TextField Person = new TextField();
+		// Text boxes to get request description
 		TextField Body = new TextField();
 		
-		Body.setTranslateY(-50.0);
-		
-		p.setTranslateY(-70);
 		f.setTranslateY(-20);
 		
 		StackPane layout = new StackPane();
 		
-		// Submits a private message when clicked
-		submitPM.setOnAction(e -> {
-			Pms pms = new Pms();
-			pms.WritePM(Body.getText(), Person.getText(), user);
+		// When button is clicked, write request
+		submitReq.setOnAction(e -> {
+			Requests req = new Requests();
+			req.WriteRequest(user, Body.getText());
 			superStage.close();
 		});
 		
@@ -67,9 +62,9 @@ public class PmManager {
 			superStage.close();
 		});
 		
-		layout.getChildren().addAll(submitPM, cancel, Person, Body, prompt, p, f);
+		layout.getChildren().addAll(submitReq, cancel, Body, prompt, f);
 		
-		StackPane.setAlignment(submitPM, Pos.BOTTOM_LEFT);
+		StackPane.setAlignment(submitReq, Pos.BOTTOM_LEFT);
 		StackPane.setAlignment(cancel, Pos.BOTTOM_RIGHT);
 		
 		StackPane.setAlignment(prompt, Pos.TOP_CENTER);

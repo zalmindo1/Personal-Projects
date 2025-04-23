@@ -21,7 +21,7 @@ public class WelcomeLoginPage {
     public WelcomeLoginPage(DatabaseHelper databaseHelper) {
         this.databaseHelper = databaseHelper;
     }
-    public void show( Stage primaryStage, User user, boolean review, boolean staff) {
+    public void show( Stage primaryStage, User user, boolean review, boolean staff, boolean instructor) {
     	
     	VBox layout = new VBox(5);
 	    layout.setStyle("-fx-alignment: center; -fx-padding: 20;");
@@ -43,6 +43,9 @@ public class WelcomeLoginPage {
 	    	}
 	    	else if (role.equals("user") && (staff)) {
 	    		new StaffWindow().show(primaryStage);
+	    	}
+	    	else if (role.equals("user") && (instructor)) {
+	    		new InstructorWindow().show(primaryStage);
 	    	}
 	    	else if (role.equals("user")){
 	    		new DiscussionWindow().show(primaryStage);
