@@ -18,7 +18,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 /**
- * <p> Title: Staff Window <p>
+ * <p> Title: Admin Window <p>
  * 
  * <p> Description: This is a JavaFX scene that is displayed when anyone with the admin role logs into the system, allowing for them to perform admin functions
    
@@ -40,6 +40,7 @@ public class AdminWindow {
     	
     	Button viewReq = new Button ("View Requests");
     	Button viewCloseReq = new Button("View Closed Requests");
+    	Button viewUsers = new Button ("View All Users");
 		
 		TextField quesSearch = new TextField();
 		Button searchButton = new Button("Search");
@@ -53,7 +54,7 @@ public class AdminWindow {
 		VBox qViewer = new VBox();
 		
     	
-		HBox buttonBox = new HBox(2, error, viewReq, viewCloseReq, quesSearch, searchButton);
+		HBox buttonBox = new HBox(2, error, viewReq, viewCloseReq, viewUsers, quesSearch, searchButton);
 		
 		students.StoreStudents("Test", "This is a test", "Lynn Robert Carter", 1);
 		QuestionList.getItems().add("Test");
@@ -90,6 +91,12 @@ public class AdminWindow {
 		viewCloseReq.setOnAction(e -> {
 			Requests req = new Requests();
 			req.ShowClosedRequestList();
+		});
+		
+		// When button is clicked, show all users
+		viewUsers.setOnAction(e -> {
+			Admin an = new Admin();
+			an.ShowAllUsersWindow();
 		});
 		
 		buttonBox.setStyle("-fx-alignment: center; -fx-padding: 20;");

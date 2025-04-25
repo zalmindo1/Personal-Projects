@@ -15,7 +15,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.*;
 /**
- * <p> Title: Private Messages List <p>
+ * <p> Title: Instructor Request List <p>
  * 
  * <p> Description: This is a JavaFX scene that displays all requests from requests.csv into a listview and allows for the editing of requests
    
@@ -56,7 +56,7 @@ public class RequestListInst {
 		// Adds open requests to reqs ListView
 		req.showOpenRequests(reqs);
 		
-		// Show who wrote the pm when list view element is clicked
+		// Show the description of the request and who wrote it
 		reqs.setOnMouseClicked(e -> {
 			try {
 				Scanner scn1 = new Scanner(file);

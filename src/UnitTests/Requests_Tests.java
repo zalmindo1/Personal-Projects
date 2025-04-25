@@ -21,7 +21,7 @@ import javafx.scene.control.ListView;
    @author Zachary Almindo
    @version 1.0
  */
-class Requests_Tests {
+public class Requests_Tests {
 
 	@BeforeAll
 	static void initJfxRuntime() {
