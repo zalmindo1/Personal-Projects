@@ -48,7 +48,9 @@ public class InstructorWindow {
     	Button request = new Button("Request Action");
     	Button viewReq = new Button ("View Requests");
     	Button viewCloseReq = new Button("View Closed Requests");
-    	Button editReq = new Button ("Edit Request");
+		Button viewPM = new Button ("View PMS");
+		Button Pm = new Button("Private Messages");
+		Button viewReviews = new Button("View Reviews");
 		
 		Label localQ = new Label();
 		
@@ -57,7 +59,7 @@ public class InstructorWindow {
 		VBox qViewer = new VBox();
 		
     	
-		HBox buttonBox = new HBox(2, error, whitelist, viewReq, request, viewCloseReq, editReq);
+		HBox buttonBox = new HBox(2, error, whitelist, viewReq, request, viewCloseReq, viewPM, Pm, viewReviews);
 		
 		students.StoreStudents("Test", "This is a test", "Lynn Robert Carter", 1);
 		QuestionList.getItems().add("Test");
@@ -114,7 +116,35 @@ public class InstructorWindow {
 			req.ShowClosedRequestListInst();
 		});
 		
-
+		// When view pm button is clicked, open a new window that displays all private messages sent
+		viewPM.setOnAction(e -> {
+			error.setText(null);
+			try {
+				PmList.show(new Stage());
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+		});
+		
+		// When Pm button is clicked, open a new window that prompts the user to send a private message to a user
+		Pm.setOnAction(e -> {
+			error.setText(null);
+			try {
+				PmManager.show(new Stage(), "Staff123");
+			} catch (FileNotFoundException e1) {
+				e1.printStackTrace();
+			}
+		});
+		
+		// When view reviews button is clicked, open a new window that displays all reviews
+		viewReviews.setOnAction(e -> {
+			error.setText(null);
+			try {
+				ReviewerList.show(new Stage(), null);
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+		});
 		
 		buttonBox.setStyle("-fx-alignment: center; -fx-padding: 20;");
 	

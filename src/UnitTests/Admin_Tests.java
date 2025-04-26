@@ -1,4 +1,4 @@
-package UnitTests;
+package unitTests;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -109,4 +109,24 @@ public class Admin_Tests {
 		assertEquals(true, an.CheckRoleOfUser(l, username));
 	}
 	
+	@Test
+	void AddInstructor() {
+		Admin an = new Admin();
+		String username = "test";
+		assertEquals(true, an.AddInstructor(username));
+	}
+	
+	@Test
+	void AddStaff() {
+		Admin an = new Admin();
+		String username = "test";
+		assertEquals(true, an.AddStaff(username));
+	}
+	
+	@Test
+	void AddReviewer() {
+		Admin an = new Admin();
+		String username = "test";
+		assertEquals(true, an.AddReviewer(username));
+	}
 }
