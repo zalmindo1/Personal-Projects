@@ -1,7 +1,9 @@
 package application;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -117,6 +119,45 @@ public class Admin {
 		}		
 		if (r_file_pass || s_file_pass || i_file_pass || admin_pass || student_pass) {
 			worked = true;
+		}
+		return worked;
+	}
+	
+	public boolean AddInstructor(String username) {
+		boolean worked = false;
+		try {
+			BufferedWriter writer = new BufferedWriter(new FileWriter("instructors.csv", true));
+			writer.write(username + ",\n");
+			writer.close();
+			worked = true;
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return worked;
+	}
+	
+	public boolean AddStaff(String username) {
+		boolean worked = false;
+		try {
+			BufferedWriter writer = new BufferedWriter(new FileWriter("staff.csv", true));
+			writer.write(username + ",\n");
+			writer.close();
+			worked = true;
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return worked;
+	}
+	
+	public boolean AddReviewer(String username) {
+		boolean worked = false;
+		try {
+			BufferedWriter writer = new BufferedWriter(new FileWriter("reviewers.csv", true));
+			writer.write(username + ",\n");
+			writer.close();
+			worked = true;
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 		return worked;
 	}

@@ -38,6 +38,9 @@ public class AllUsersList {
 		ListView<String> Users = new ListView<>();
 		
 		Button close = new Button ("Close");
+		Button addInst = new Button ("Add Instructor");
+		Button addStaff = new Button ("Add Staff Member");
+		Button addRev = new Button ("Add Reviewer");
 		VBox pmViewer = new VBox();
 		Label r = new Label();
 		
@@ -58,7 +61,22 @@ public class AllUsersList {
 			pmViewer.getChildren().add(r);
 		});
 		
-		HBox buttonBox = new HBox(4, close);
+		addInst.setOnAction(e -> {
+			an.AddInstructor(Users.getSelectionModel().getSelectedItem());
+			superStage.close();
+		});
+		
+		addStaff.setOnAction(e -> {
+			an.AddStaff(Users.getSelectionModel().getSelectedItem());
+			superStage.close();
+		});
+		
+		addRev.setOnAction(e -> {
+			an.AddReviewer(Users.getSelectionModel().getSelectedItem());
+			superStage.close();
+		});
+		
+		HBox buttonBox = new HBox(4, close, addInst, addStaff, addRev);
 		
 		BorderPane bdrLayout = new BorderPane();
 		bdrLayout.setCenter(pmViewer);
