@@ -59,7 +59,7 @@ public class ValidRoleCheck {
 	/**
 	 * This method checks the instructors.csv file to see if passed in username is an instructor
 	 * @param username
-	 * @return
+	 * @return true if you are an instructor, false if otherwise
 	 */
 	public boolean CheckValidInstructor (String username) {
 		boolean valid = false;

@@ -28,6 +28,10 @@ public class Requests_Tests {
 	    Platform.startup(() -> {});
 	}
 	
+	/**
+	 * <p> Tests the Requests.java class to make sure open requests are displayed into the passed in listview
+	 * <p> Test passes
+	 */
 	@Test
 	void displayOpenRequests() {
 		Requests rq = new Requests();
@@ -35,6 +39,10 @@ public class Requests_Tests {
 		assertEquals(true, rq.showOpenRequests(reqs));
 	}
 	
+	/**
+	 * <p> Tests the Requests.java class to make sure the open request window opens correctly
+	 * <p> Test passes
+	 */
 	@Test
 	void showRequstList() {
 		Requests rq = new Requests();
@@ -43,6 +51,10 @@ public class Requests_Tests {
 		});
 	}
 	
+	/**
+	 * <p> Tests the Requests.java class to make sure the instructor open request window opens correctly
+	 * <p> Test passes
+	 */
 	@Test
 	void showInstructorRqList() {
 		Requests rq = new Requests();
@@ -51,6 +63,10 @@ public class Requests_Tests {
 		});
 	}
 	
+	/**
+	 * <p> Tests the Requests.java class to make sure the admin open request window opens correctly
+	 * <p> Test passes
+	 */
 	@Test
 	void showAdminRequestList() {
 		Requests rq = new Requests();
@@ -59,6 +75,10 @@ public class Requests_Tests {
 		});
 	}
 	
+	/**
+	 * <p> Tests the Requests.java class to make sure the window for adding a new admin request opens correctly
+	 * <p> Test passes
+	 */
 	@Test
 	void showRequestManager() {
 		Requests rq = new Requests();
@@ -67,6 +87,10 @@ public class Requests_Tests {
 		});
 	}
 	
+	/**
+	 * <p> Tests the Requests.java class to make sure writing a request through the request manager window performs correctly
+	 * <p> Test passes
+	 */
 	@Test
 	void writeRequest() {
 		String sender = "Instructor";
@@ -75,6 +99,10 @@ public class Requests_Tests {
 		assertEquals(true, rq.WriteRequest(sender, desc));
 	}
 	
+	/**
+	 * <p> Tests the Requests.java class to make sure the close request method works correctly
+	 * <p> Test passes
+	 */
 	@Test
 	void closeRequest() throws IOException {
 		Requests rq = new Requests();
@@ -82,6 +110,10 @@ public class Requests_Tests {
 		assertEquals(true, rq.CloseRequest(reqs));
 	}
 	
+	/**
+	 * <p> Tests the Requests.java class to make sure closed requests are displayed on the passed in listview
+	 * <p> Test passes
+	 */
 	@Test
 	void showClosedRequests() {
 		Requests rq = new Requests();
@@ -89,6 +121,10 @@ public class Requests_Tests {
 		assertEquals(true, rq.showCLosedRequests(reqs));
 	}
 	
+	/**
+	 * <p> Tests the Requests.java class to make sure the closed requests window open correctly
+	 * <p> Test passes
+	 */
 	@Test
 	void closedRequestList() {
 		Requests rq = new Requests();
@@ -97,6 +133,10 @@ public class Requests_Tests {
 		});
 	}
 	
+	/**
+	 * <p> Tests the Requests.java class to make sure the instructor closed requests window open correctly
+	 * <p> Test passes
+	 */
 	@Test
 	void closedRqListInst() {
 		Requests rq = new Requests();
@@ -105,6 +145,10 @@ public class Requests_Tests {
 		});
 	}
 	
+	/**
+	 * <p> Tests the Requests.java class to make sure the open request method works correctly
+	 * <p> Test passes
+	 */
 	@Test
 	void openRequest() throws IOException {
 		Requests rq = new Requests();
@@ -112,6 +156,10 @@ public class Requests_Tests {
 		assertEquals(true, rq.OpenRequest(reqs));
 	}
 	
+	/**
+	 * <p> Tests the Requests.java class to make sure instructors can edit the description of requests
+	 * <p> Test passes
+	 */
 	@Test
 	void editRequest() throws IOException {
 		String desc = "Test Edit";
@@ -120,6 +168,10 @@ public class Requests_Tests {
 		assertEquals(true, rq.EditRequest(desc, reqs));
 	}
 	
+	/**
+	 * <p> Tests the Requests.java class to make sure the window for editing requests appears
+	 * <p> Test passes
+	 */
 	@Test
 	void showEditRequestWindow() {
 		Requests rq = new Requests();

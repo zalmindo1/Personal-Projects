@@ -52,6 +52,9 @@ public class InstructorWindow {
 		Button Pm = new Button("Private Messages");
 		Button viewReviews = new Button("View Reviews");
 		
+		Button gradeAReviewer = new Button("Grade a reviewer.");
+		Button displayReviewerStats = new Button("Display Reviewer Stats");
+		
 		Label localQ = new Label();
 		
 		Label error = new Label();
@@ -59,7 +62,7 @@ public class InstructorWindow {
 		VBox qViewer = new VBox();
 		
     	
-		HBox buttonBox = new HBox(2, error, whitelist, viewReq, request, viewCloseReq, viewPM, Pm, viewReviews);
+		HBox buttonBox = new HBox(2, error, whitelist, viewReq, request, viewCloseReq, viewPM, Pm, viewReviews, gradeAReviewer, displayReviewerStats);
 		
 		students.StoreStudents("Test", "This is a test", "Lynn Robert Carter", 1);
 		QuestionList.getItems().add("Test");
@@ -144,6 +147,57 @@ public class InstructorWindow {
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}
+		});
+		
+		gradeAReviewer.setOnAction(e -> {
+			final class Prompter {
+				final static void show() {
+					Stage winStage = new Stage();
+					VBox layout = new VBox();
+					TextField revID = new TextField("Enter the reviewer's ID.");
+					TextField grade = new TextField("Grade the reviewer.");
+					Button submitGrade = new Button("Submit");
+					submitGrade.setOnAction(e -> {
+						ReviewerController.storeGrade(Integer.parseInt(revID.getText()), Integer.parseInt(grade.getText()), "Mooey001");
+						winStage.close();
+					});
+					layout.getChildren().addAll(revID, grade, submitGrade);
+					Scene winScene = new Scene(layout, 640,480);
+					winStage.setScene(winScene);
+					winStage.show();
+				}
+			}
+			Prompter.show();
+		});
+
+		displayReviewerStats.setOnAction(e -> {
+			final class Prompter {
+				final static void show() {
+					Stage newStage = new Stage();
+					VBox layout = new VBox(10);
+					TextField revIDInput = new TextField("Enter the ID of the reviewer you want to search.");
+					Button submit = new Button("Search Reviewer");
+					Label reviewerGrade = new Label("Reviewer grade will show up here!");
+					Label favGrade = new Label("Favorabilty grade will show up here!");
+					Label errLabel = new Label("Errors will show up here.");
+					submit.setOnAction(e -> {
+						int id = Integer.parseInt(revIDInput.getText());
+						String result = ReviewerController.computeReviewScore(id)[1];
+						double favResult = ReviewerController.computeFavorabilityPercentage(id);
+						if(result.equals("NaN") && favResult == -1)
+							errLabel.setText("Error: No information was found with this reviewer ID");
+						else
+							errLabel.setText("");
+						reviewerGrade.setText("This reviewer has a average grade of " + (result.equals("NaN") ? "NaN" : result));
+						favGrade.setText("This reviewer has a favorability grade of " + (favResult == -1 ? "NaN" : favResult));
+					});
+					layout.getChildren().addAll(revIDInput, submit, reviewerGrade, favGrade, errLabel);
+					Scene winScene = new Scene(layout, 640, 480);
+					newStage.setScene(winScene);
+					newStage.show();
+				}
+			}
+			Prompter.show();
 		});
 		
 		buttonBox.setStyle("-fx-alignment: center; -fx-padding: 20;");

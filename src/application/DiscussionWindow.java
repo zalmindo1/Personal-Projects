@@ -47,7 +47,6 @@ public class DiscussionWindow {
 		
 		VBox qViewer = new VBox();
 		
-    	
 		HBox buttonBox = new HBox(2, error, askQuestion, editQuestion, deleteQuestion, viewPM, Pm, viewReviews, trustedReviewers, whitelist, quesSearch, searchButton);
 		
 		students.StoreStudents("Test", "This is a test", "Lynn Robert Carter", 1);
@@ -133,6 +132,7 @@ public class DiscussionWindow {
 				e1.printStackTrace();
 			}
 		});
+		
 		
 		buttonBox.setStyle("-fx-alignment: center; -fx-padding: 20;");
 	

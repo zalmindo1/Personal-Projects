@@ -10,8 +10,21 @@ import java.util.Scanner;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
-
+/**
+ * <p> Title: Admin Controller <p>
+ * 
+ * <p> Description: This java class handles all functions regarding admin functions
+   
+   <p> Copyright: Zachary Almindo © 2025<p>
+   
+   @author Zachary Almindo
+   @version 1.0
+ */
 public class Admin {
+	/**
+	 * This method displays a widow containing a listview that is populated with all users in application
+	 * @return
+	 */
 	public boolean ShowAllUsersWindow() {
 		boolean worked = false;
 		try {
@@ -23,6 +36,11 @@ public class Admin {
 		return worked;
 	}
 	
+	/**
+	 * This method populates the passed in listview with all users in application
+	 * @param users
+	 * @return
+	 */
 	public boolean PopulateAllUsers(ListView<String> users) {
 		boolean worked = false;
 		boolean r_file_pass = false;
@@ -68,6 +86,12 @@ public class Admin {
 		return worked;
 	}
 	
+	/**
+	 * This method checks the role of the passed in username and then edits the label in the all users window to display what role the selected user is
+	 * @param r
+	 * @param user
+	 * @return
+	 */
 	public boolean CheckRoleOfUser(Label r, String user) {
 		boolean worked = false;
 		boolean r_file_pass = false;
@@ -123,6 +147,11 @@ public class Admin {
 		return worked;
 	}
 	
+	/**
+	 * This method adds the passed in username to the instructor.csv file, making them an instructor
+	 * @param username
+	 * @return
+	 */
 	public boolean AddInstructor(String username) {
 		boolean worked = false;
 		try {
@@ -136,6 +165,11 @@ public class Admin {
 		return worked;
 	}
 	
+	/**
+	 * This method adds the passed in username to the staff.csv file, making them a staff member
+	 * @param username
+	 * @return
+	 */
 	public boolean AddStaff(String username) {
 		boolean worked = false;
 		try {
@@ -148,7 +182,11 @@ public class Admin {
 		}
 		return worked;
 	}
-	
+	 /**
+	  * This method adds the passed in username to the reviewers.csv file, making them a reviewer
+	  * @param username
+	  * @return
+	  */
 	public boolean AddReviewer(String username) {
 		boolean worked = false;
 		try {

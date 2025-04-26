@@ -34,7 +34,7 @@ public class AllUsersList {
 		// Sets title for window
 		superStage.setTitle("Users List");
 		
-		// List view contains all of the private messages
+		// List view contains all users
 		ListView<String> Users = new ListView<>();
 		
 		Button close = new Button ("Close");
@@ -61,16 +61,19 @@ public class AllUsersList {
 			pmViewer.getChildren().add(r);
 		});
 		
+		// Adds instructor
 		addInst.setOnAction(e -> {
 			an.AddInstructor(Users.getSelectionModel().getSelectedItem());
 			superStage.close();
 		});
 		
+		// Adds staff member
 		addStaff.setOnAction(e -> {
 			an.AddStaff(Users.getSelectionModel().getSelectedItem());
 			superStage.close();
 		});
 		
+		// Adds reviewer
 		addRev.setOnAction(e -> {
 			an.AddReviewer(Users.getSelectionModel().getSelectedItem());
 			superStage.close();

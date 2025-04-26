@@ -109,6 +109,10 @@ public class Admin_Tests {
 		assertEquals(true, an.CheckRoleOfUser(l, username));
 	}
 	
+	/**
+	 * <p> Tests the Admin.java class to make sure the admin can add an instructor to the application
+	 * <p> Test passes
+	 */
 	@Test
 	void AddInstructor() {
 		Admin an = new Admin();
@@ -116,6 +120,10 @@ public class Admin_Tests {
 		assertEquals(true, an.AddInstructor(username));
 	}
 	
+	/**
+	 * <p> Tests the Admin.java class to make sure the admin can add a staff member to the application
+	 * <p> Test passes
+	 */
 	@Test
 	void AddStaff() {
 		Admin an = new Admin();
@@ -123,6 +131,10 @@ public class Admin_Tests {
 		assertEquals(true, an.AddStaff(username));
 	}
 	
+	/**
+	 * <p> Tests the Admin.java class to make sure the admin can add a reviewer to the application
+	 * <p> Test passes
+	 */
 	@Test
 	void AddReviewer() {
 		Admin an = new Admin();

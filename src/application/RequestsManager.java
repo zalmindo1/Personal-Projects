@@ -15,7 +15,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.*;
 /**
- * <p> Title: Private Messages Window <p>
+ * <p> Title: Requests Manager <p>
  * 
  * <p> Description: This is a JavaFX scene that allows for instructors to create a admin work request ticket
    
