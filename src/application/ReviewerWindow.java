@@ -31,6 +31,7 @@ public class ReviewerWindow {
 		Button ScanReviews = new Button("Look at your reviews");
 		Button Pm = new Button("Private Messages");
 		Button viewPM = new Button("View PMS");
+		Button viewProfile = new Button("View Profile");
 		
 		Label q = new Label();
 		
@@ -41,7 +42,7 @@ public class ReviewerWindow {
 		VBox qViewer = new VBox();
 		
     	
-		HBox buttonBox = new HBox(4, error, reviewQuestion, ScanReviews, Pm, viewPM);
+		HBox buttonBox = new HBox(4, error, reviewQuestion, ScanReviews, Pm, viewPM, viewProfile);
 		
 		students.StoreStudents("Test", "This is a test", "Lynn Robert Carter", 1);
 		QuestionList.getItems().add("Test");
@@ -97,6 +98,14 @@ public class ReviewerWindow {
 			error.setText(null);
 			try {
 				PmList.show(new Stage());
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+		});
+		
+		viewProfile.setOnAction(e -> {
+			try {
+				ReviewerProfileWindow.show(new Stage(), "Mooey001");
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}
